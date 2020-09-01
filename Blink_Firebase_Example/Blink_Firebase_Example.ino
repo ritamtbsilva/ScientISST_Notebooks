@@ -9,13 +9,6 @@ This code uses MLX90614
 IR non-contact temperature sensor and NodeMCU ESP32 
  ****************************************************/
 
-#include <Wire.h>
-#include <Adafruit_MLX90614.h>
-
-#include <Wire.h>
-#include "Adafruit_MCP9808.h"
-
-
 #include <HTTPClient.h>
 #include <HTTPUpdate.h>
 #include <HTTPClientESP32Ex.h>
@@ -25,6 +18,8 @@ IR non-contact temperature sensor and NodeMCU ESP32
 #include <FirebaseESP32HTTPClient.h>
 #include <FirebaseJson.h>
 #include <WiFi.h>
+
+
 String path = "/ESP32_Device";
 
 //1. Change the following info for WiFi connection
@@ -85,9 +80,11 @@ void loop() {
         digitalWrite(LED_BUILTIN, state);
         delay(1000);
 
-        // For Variable Update, will change the variable "ContinuousDataRT" each time the loop() runs
+        // For Variable Update, will change the variable 
+        // "LED" each time the loop() runs
         Firebase.setDouble(firebaseData, path + "/LED",state); 
-        // Saves data in a list
+        
+        // Saves LED status in a list
         Firebase.pushDouble(firebaseData, path + "/LED_History",state);
           
           
